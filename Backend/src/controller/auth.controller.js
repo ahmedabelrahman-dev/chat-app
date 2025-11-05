@@ -2,6 +2,8 @@ import express from 'express';
 import User from '../models/user.model.js';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '../lib/utils.js';
+import e from 'express';
+import cloudinary from '../lib/cloudinary.js';
 
 export const signup = async (req, res) => {
   // Handle signup
@@ -35,7 +37,7 @@ export const signup = async (req, res) => {
           id: newUser._id,
           email: newUser.email,
           fullname: newUser.fullname,
-          profilepic: newUser.profilepic,
+          profilePic: newUser.profilePic,
         },
       });
     } else {
@@ -47,12 +49,71 @@ export const signup = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
+export const login = async (req, res) => {
   // Handle login
-  res.send('Login route');
+  const { email, password } = req.body;
+  try {
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Invalid email or password' });
+    }
+    // Generate JWT token
+    generateToken(user._id, res);
+    res.status(200).json({
+      user: {
+        id: user._id,
+        email: user.email,
+        fullname: user.fullname,
+        profilePic: user.profilePic,
+      },
+      message: 'Login successful',
+    });
+  } catch (error) {
+    console.error('Error during login:', error.message);
+    res.status(500).json({ message: 'internal Server error' });
+  }
 };
 
 export const logout = (req, res) => {
   // Handle logout
-  res.send('Logout route');
+  try {
+    res.cookie('token', '', {
+      maxAge: 0,
+    });
+    res.status(200).json({ message: 'Logged out successfully' });
+  } catch (error) {
+    console.error('Error during logout:', error.message);
+    res.status(500).json({ message: 'internal Server error' });
+  }
+};
+export const updateProfile = async (req, res) => {
+  try {
+    const { profilePic } = req.body;
+    const userId = req.user._id;
+    if (!profilePic) {
+      return res
+        .status(400)
+        .json({ message: 'Profile picture URL is required' });
+    }
+    const uploadResponse = await cloudinary.uploader.upload(profilePic);
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { profilePic: uploadResponse.secure_url },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.status(200).json({
+      user: updatedUser,
+      message: 'Profile updated successfully',
+    });
+  } catch (error) {
+    console.error('Error during profile update:', error.message);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
 };
