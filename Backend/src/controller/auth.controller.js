@@ -117,3 +117,12 @@ export const updateProfile = async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 };
+export const checkAuth = (req, res) => {
+  // Check if user is authenticated
+  try {
+    res.status(200).json(req.user);
+  } catch (error) {
+    console.error('Error during authentication check:', error.message);
+    res.status(500).json({ message: 'internal Server error' });
+  }
+};
