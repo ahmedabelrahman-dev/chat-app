@@ -16,41 +16,46 @@ export const getUsersForSidebar = async (req, res) => {
 };
 export const getMessages = async (req, res) => {
   try {
-    const { id: userTOChatID } = req.params;
+    const { id: userToChatId } = req.params;
     const myId = req.user._id;
+
     const messages = await Message.find({
       $or: [
-        { sender: myId, receiver: userTOChatID },
-        { sender: userTOChatID, receiver: myId },
+        { senderId: myId, receiverId: userToChatId },
+        { senderId: userToChatId, receiverId: myId },
       ],
-    }).sort({ createdAt: 1 }); // Sort messages by creation time in ascending order
+    }).sort({ createdAt: 1 }); // oldest to newest
+
     res.status(200).json(messages);
   } catch (error) {
     console.error('Error fetching messages:', error);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 export const sendMessage = async (req, res) => {
   try {
     const { text, image } = req.body;
-    const { id: receiverID } = req.params;
-    const senderID = req.user._id;
+    const { id: receiverId } = req.params;
+    const senderId = req.user._id;
 
     let imageUrl;
     if (image) {
-      // In a real application, you would handle image upload here
+      // Upload image to Cloudinary (if provided)
       const uploadResponse = await cloudinary.uploader.upload(image);
       imageUrl = uploadResponse.secure_url;
     }
 
-    const newMessage = await Message({
-      sender: senderID,
-      receiver: receiverID,
+    // ✅ Use senderId and receiverId (matching schema)
+    const newMessage = new Message({
+      senderId,
+      receiverId,
       text,
       image: imageUrl,
     });
+
     await newMessage.save();
-    // real-time functionality will be handled via socket.io
+
     res.status(201).json(newMessage);
   } catch (error) {
     console.error('Error sending message:', error);
