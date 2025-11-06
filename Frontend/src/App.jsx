@@ -7,7 +7,7 @@ import SettingsPage from './pages/SettingsPage';
 import { Routes, Route } from 'react-router-dom';
 import { useAuthStore } from './store/useAuthStore.js';
 import { useEffect } from 'react';
-import { LoaderIcon } from 'react-hot-toast';
+import { LoaderIcon, Toaster } from 'react-hot-toast';
 import { Loader } from 'lucide-react';
 
 function App() {
@@ -43,6 +43,7 @@ function App() {
         />
         <Route path="/settings" element={<SettingsPage />} />
       </Routes>
+      <Toaster position="top-center" reverseOrder={false} />
     </div>
   );
 }
