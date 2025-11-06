@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
+import { useState } from 'react';
+import { useAuthStore } from '../store/useAuthStore.js';
 import {
   Mail,
   MessageSquare,
@@ -95,7 +95,7 @@ function SignUpPage() {
                   placeholder="John Doe"
                   className="input input-bordered w-full pl-10"
                   onChange={(e) =>
-                    setFormData({ ...formData, fullname: e.target.value })
+                    setFormData({ ...formData, fullnsame: e.target.value })
                   }
                 />
               </div>

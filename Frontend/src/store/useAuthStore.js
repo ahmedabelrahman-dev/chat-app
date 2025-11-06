@@ -46,4 +46,26 @@ export const useAuthStore = create((set) => ({
       set({ isLoggingIn: false });
     }
   },
+  logout: async () => {
+    try {
+      await instance.post('/auth/logout');
+      set({ authUser: null });
+      toast.success('logged out succesfullly');
+    } catch (error) {
+      toast.error(error.response.data.message);
+    }
+  },
+  updateProfile: async (data) => {
+    set({ isUpdatingProfile: true });
+    try {
+      const res = await instance.put('/auth/updateProfile', data);
+      set({ authUser: res.data });
+      toast.success('profile updated successfully');
+    } catch (error) {
+      console.log('error in updating profile', error);
+      toast.error(error.response.data.message);
+    } finally {
+      set({ isUpdatingProfile: false });
+    }
+  },
 }));

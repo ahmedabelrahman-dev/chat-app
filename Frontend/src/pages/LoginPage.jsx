@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { useAuthStore } from '../store/useAuthStore';
+import { useAuthStore } from '../store/useAuthStore.js';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, Loader2, MessageSquare } from 'lucide-react';
-import { toast } from 'react-hot-toast';
+import { Mail, MessageSquare, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import AuthImagePattern from '../components/AuthImagePattern.jsx';
+import { toast } from 'react-hot-toast';
 
-function LoginPage() {
+const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
-
   const { login, isLoggingIn } = useAuthStore();
-
   const validateForm = () => {
     const { email, password } = formData;
 
@@ -23,7 +21,7 @@ function LoginPage() {
     }
 
     if (!/\S+@\S+\.\S+/.test(email)) {
-      toast.error('Invalid email address');
+      toast.error('Please enter a valid email address');
       return false;
     }
 
@@ -32,28 +30,32 @@ function LoginPage() {
       return false;
     }
 
+    if (password.length < 6) {
+      toast.error('Password must be at least 6 characters long');
+      return false;
+    }
+
     return true;
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (validateForm()) login(formData);
+    const success = validateForm();
+    if (success === true) login(formData);
   };
-
   return (
     <div className="min-h-screen grid lg:grid-cols-2">
       {/* Left Side */}
       <div className="flex flex-col items-center justify-center p-6 sm:p-12">
         <div className="w-full max-w-md space-y-8">
-          {/* Logo + Title */}
+          {/* LOGO */}
           <div className="text-center mb-8">
             <div className="flex flex-col items-center gap-2 group">
               <div className="size-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                 <MessageSquare className="size-6 text-primary" />
               </div>
-              <h1 className="text-2xl font-bold mt-2">Welcome back</h1>
+              <h1 className="text-2xl font-bold mt-2">Login</h1>
               <p className="text-base-content/60">
-                Log in to continue chatting
+                login into you exesting acount
               </p>
             </div>
           </div>
@@ -113,7 +115,6 @@ function LoginPage() {
               </div>
             </div>
 
-            {/* Submit Button */}
             <button
               type="submit"
               className="btn btn-primary w-full"
@@ -122,18 +123,16 @@ function LoginPage() {
               {isLoggingIn ? (
                 <>
                   <Loader2 className="size-5 animate-spin" />
-                  Logging in...
+                  LoggingIn Up...
                 </>
               ) : (
-                'Login'
+                'Log in'
               )}
             </button>
           </form>
-
-          {/* Link to Sign Up */}
           <div className="text-center">
             <p className="text-base-content/50">
-              Don't have an account?{' '}
+              you don't have an account?{' '}
               <Link to="/signup" className="link link-primary">
                 Sign up
               </Link>
@@ -141,14 +140,13 @@ function LoginPage() {
           </div>
         </div>
       </div>
-
-      {/* Right Side */}
+      {/* Right Side - Image */}
       <AuthImagePattern
-        title="Welcome Back!"
-        subtitle="Reconnect with your friends and community."
+        title="Join our community"
+        subtitle="Connect with friends and the world around you."
       />
     </div>
   );
-}
+};
 
 export default LoginPage;
