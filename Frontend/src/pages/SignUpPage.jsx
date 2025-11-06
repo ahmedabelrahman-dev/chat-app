@@ -91,11 +91,11 @@ function SignUpPage() {
                 </div>
                 <input
                   type="text"
-                  value={formData.fullName}
+                  value={formData.fullname}
                   placeholder="John Doe"
                   className="input input-bordered w-full pl-10"
                   onChange={(e) =>
-                    setFormData({ ...formData, fullName: e.target.value })
+                    setFormData({ ...formData, fullname: e.target.value })
                   }
                 />
               </div>
