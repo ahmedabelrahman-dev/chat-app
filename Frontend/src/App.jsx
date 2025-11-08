@@ -13,10 +13,7 @@ import { useThemeStore } from './store/useThemeStore';
 
 function App() {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
-  const { theme } = useThemeStore;
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+  const { theme } = useThemeStore();
 
   useEffect(() => {
     checkAuth();
