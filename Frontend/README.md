@@ -86,5 +86,19 @@ Navigate to the server directory and start the server:
 cd server
 npm start # or npm run dev
 
+The server will be running at http://localhost:5001.
 
+2. Run the Frontend Client
+Navigate to the client directory and start the frontend:
+
+Bash
+
+cd ../client
+npm run dev # or npm start
+The client will be running at http://localhost:5173.
+
+📄 License
+This project is licensed under the [MIT License] - see the LICENSE file for details.
+
+Built with ❤️ by @ahmedabelrahman-dev
 ```
