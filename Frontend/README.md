@@ -18,7 +18,7 @@ This is a full-stack real-time chat application designed to facilitate seamless,
 
 ---
 
-## 🛠 Technologies Used
+## 🛠 Technologies Used :
 
 | Component     | Technology                                | Description                                                              |
 | :------------ | :---------------------------------------- | :----------------------------------------------------------------------- |
