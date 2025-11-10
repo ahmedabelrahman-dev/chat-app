@@ -1,4 +1,4 @@
-# 💬 [Project Name, Real-Time Chat App]
+# 💬 [Project Name: Real-Time Chat App]
 
 ## A Secure and Scalable Real-Time Messaging Platform
 
