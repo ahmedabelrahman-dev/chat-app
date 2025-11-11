@@ -2,18 +2,20 @@ import { useEffect } from 'react';
 import { Loader } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import HomePage from './pages/HomePage.jsx';
+import Navbar from './components/Navbar.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import SignUpPage from './pages/SignUpPage.jsx';
+import { Routes, Route } from 'react-router-dom';
 import ProfilePage from './pages/ProfilePage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
-import { Routes, Route } from 'react-router-dom';
-import { useAuthStore } from './store/useAuthStore.js';
-import Navbar from './components/Navbar.jsx';
 import { useThemeStore } from './store/useThemeStore';
+import { useAuthStore } from './store/useAuthStore.js';
 
 function App() {
-  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
+
+  console.log({ onlineUsers });
 
   useEffect(() => {
     checkAuth();
