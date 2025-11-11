@@ -1,0 +1,20 @@
+{
+  "name": "chat-app",
+  "version": "1.0.0",
+  "description": "This is a full-stack real-time chat application designed to facilitate seamless, instant communication between users. It supports one-on-one private messaging, group chats, and features like secure profile management.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahmedabelrahman-dev/Chat-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahmedabelrahman-dev/Chat-app/issues"
+  },
+  "homepage": "https://github.com/ahmedabelrahman-dev/Chat-app#readme"
+}

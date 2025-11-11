@@ -5,14 +5,13 @@ import { connectDB } from './lib/db.js';
 import cookieParser from 'cookie-parser';
 import messageRoutes from './routes/message.route.js';
 import cors from 'cors';
+import { app, server } from './lib/sokect.js';
 
 // Load environment variables
 
 dotenv.config();
 
 const port = process.env.PORT;
-
-const app = express();
 
 // middleware
 app.use(express.json({ limit: '20mb' }));
@@ -35,7 +34,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
 // Start the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
   connectDB();
 });
