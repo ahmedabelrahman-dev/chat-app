@@ -6,12 +6,14 @@ import cookieParser from 'cookie-parser';
 import messageRoutes from './routes/message.route.js';
 import cors from 'cors';
 import { app, server } from './lib/sokect.js';
+import path from 'path';
 
 // Load environment variables
 
 dotenv.config();
 
 const port = process.env.PORT;
+const __dirname = path.resolve();
 
 // middleware
 app.use(express.json({ limit: '20mb' }));
@@ -32,6 +34,14 @@ app.get('/', (req, res) => {
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend', 'dist', 'index.html'));
+  });
+}
 
 // Start the server
 server.listen(port, () => {
