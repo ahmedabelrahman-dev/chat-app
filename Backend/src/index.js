@@ -42,7 +42,7 @@ if (process.env.NODE_ENV === 'production') {
 
   const indexPath = path.join(distPath, 'index.html');
   console.log(`Current indexPath: ${indexPath}`);
-  app.get('/*', (req, res) => {
+  app.get('/{*any}', (req, res) => {
     res.sendFile(indexPath);
   });
 }
