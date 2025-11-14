@@ -36,10 +36,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/messages', messageRoutes);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static(path.join(__dirname, '../../frontend/dist')));
+  const path = path.join(__dirname, '../../frontend/dist');
+  console.log(`Current path: ${path}`);
+  app.use(express.static(path));
 
-  app.get('/{*any}', (req, res) => {
-    res.sendFile(path.join(__dirname, '../../frontend', 'dist', 'index.html'));
+  const indexPath = path.join(path, 'index.html');
+  console.log(`Current indexPath: ${indexPath}`);
+  app.get('/*', (req, res) => {
+    res.sendFile(indexPath);
   });
 }
 
