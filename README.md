@@ -97,6 +97,18 @@ cd ../client
 npm run dev # or npm start
 The client will be running at http://localhost:5173.
 
+---
+
+## 🖼 UI Preview (from `chatty/`)
+
+| Home | Live Chat | Profile |
+| :--: | :-------: | :-----: |
+| ![Home](./chatty/home.png) | ![Live Chat](./chatty/liveChatWithOnlineUser.png) | ![Profile](./chatty/profile.png) |
+
+| Settings | Signup |
+| :------: | :----: |
+| ![Settings](./chatty/settings.png) | ![Signup](./chatty/signup.png) |
+
 📄 License
 This project is licensed under the [MIT License] - see the LICENSE file for details.
 

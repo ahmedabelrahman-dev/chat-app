@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/ahmedabelrahman-dev/Chat-app/issues"
   },
-  "homepage": "https://github.com/ahmedabelrahman-dev/Chat-app#readme"
+  "homepage": "https://github.com/ahmedabelrahman-dev/Chat-app#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
