@@ -6,6 +6,15 @@ This is a full-stack real-time chat application designed to facilitate seamless,
 
 ---
 
+![signup page](chatty/signup.png)
+![login page](chatty/login.png)
+![home page](chatty/home.png)
+![settings page](chatty/settings.png)
+![profile page](chatty/profile.png)
+![live chat page](chatty/liveChatWithOnlineUser.png)
+
+---
+
 ## ✨ Features
 
 - **Real-Time Messaging:** Instantaneous message delivery using WebSockets (e.g., Socket.IO).
@@ -99,12 +108,7 @@ The client will be running at http://localhost:5173.
 
 ---
 
-![signup page](chatty/signup.png)
-![login page](chatty/login.png)
-![home page](chatty/home.png)
-![settings page](chatty/settings.png)
-![profile page](chatty/profile.png)
-![live chat page](chatty/liveChatWithOnlineUser.png)
+
 📄 License
 This project is licensed under the [MIT License] - see the LICENSE file for details.
 
