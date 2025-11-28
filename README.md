@@ -6,11 +6,34 @@ This is a full-stack real-time chat application designed to facilitate seamless,
 
 ---
 
+## Screenshots
+
+signup page :
 ![signup page](chatty/signup.png)
+
+---
+
+login page :
 ![login page](chatty/login.png)
+
+---
+
+Home page (light mode):
 ![home page](chatty/home.png)
+
+---
+
+settings page:
 ![settings page](chatty/settings.png)
+
+---
+
+profile page :
 ![profile page](chatty/profile.png)
+
+---
+
+live chat page:
 ![live chat page](chatty/liveChatWithOnlineUser.png)
 
 ---
