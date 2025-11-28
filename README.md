@@ -99,16 +99,12 @@ The client will be running at http://localhost:5173.
 
 ---
 
-## 🖼 UI Preview (from `chatty/`)
-
-| Home | Live Chat | Profile |
-| :--: | :-------: | :-----: |
-| ![Home](./chatty/home.png) | ![Live Chat](./chatty/liveChatWithOnlineUser.png) | ![Profile](./chatty/profile.png) |
-
-| Settings | Signup |
-| :------: | :----: |
-| ![Settings](./chatty/settings.png) | ![Signup](./chatty/signup.png) |
-
+![signup page](chatty/signup.png)
+![login page](chatty/login.png)
+![home page](chatty/home.png)
+![settings page](chatty/settings.png)
+![profile page](chatty/profile.png)
+![live chat page](chatty/liveChatWithOnlineUser.png)
 📄 License
 This project is licensed under the [MIT License] - see the LICENSE file for details.
 
